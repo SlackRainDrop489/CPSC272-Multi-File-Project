@@ -12,6 +12,7 @@ A C++ class for making and editing a bank account.
 ## Methods List
 
 | Method Signature | Return Type | Description |
+|----------|----------|----------|
 | `BankAccount()` | (Constructor) | Default constructor. |
 | `BankAccount(acountNum, HolderName, bal)` | (Constructor) | Parameterized constructor. |
 | `getAccountNumber()` | `string` | Gets the accounts number.` |
