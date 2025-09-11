@@ -15,7 +15,7 @@ A C++ class for making and editing a bank account.
 |----------|----------|----------|
 | `BankAccount()` | (Constructor) | Default constructor. |
 | `BankAccount(acountNum, HolderName, bal)` | (Constructor) | Parameterized constructor. |
-| `getAccountNumber()` | `string` | Gets the accounts number.` |
+| `getAccountNumber()` | `string` | Gets the accounts number. |
 | `getAccountHolderName()` | `string` | Gets the accounts account holder name. |
 | `getBalance()` | `double` | Gets the account balance. |
 | `setAccountHolderName(accountHoldName)` | `void` | Sets the account holder name. |
