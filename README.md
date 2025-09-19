@@ -9,7 +9,7 @@ A C++ class for making and editing a bank account.
 | `accountHolderName` | `string` | Holds the accounts account holder name. |
 | `balance` | `double` | Holds the accounts balance. |
 
-## Methods List
+## Methodsd List
 
 | Method Signature | Return Type | Description |
 |----------|----------|----------|
