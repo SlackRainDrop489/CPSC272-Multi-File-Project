@@ -1,0 +1,13 @@
+//
+// Created by Quinn on 9/20/2025.
+//
+
+#ifndef OBJECTS_CLASSES_LAB_BANKACCOUNT_H
+#define OBJECTS_CLASSES_LAB_BANKACCOUNT_H
+
+
+class BankAccount {
+};
+
+
+#endif //OBJECTS_CLASSES_LAB_BANKACCOUNT_H
