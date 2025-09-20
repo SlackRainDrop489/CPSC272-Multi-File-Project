@@ -19,6 +19,9 @@ class BankAccount { // This is the BankAccount class
         double balance;
     public:
         BankAccount();
+        BankAccount(const BankAccount& other);
+        BankAccount& operator=(const BankAccount& other);
+        ~BankAccount();
         BankAccount(string acountNum, string HolderName, double bal);
         string getAccountNumber();
         string getAccountHolderName();
