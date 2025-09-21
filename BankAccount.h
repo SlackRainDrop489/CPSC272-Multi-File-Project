@@ -10,20 +10,49 @@
 
 using namespace std;
 
+
 class BankAccount {
 private:
     string accountNumber;
     string accountHolderName;
     double balance;
-    public:
+
+public:
     BankAccount();
+
     BankAccount(string acountNum, string HolderName, double bal);
+
     string getAccountNumber();
+
     string getAccountHolderName();
+
     double getBalance();
+
     void setAccountHolderName(string accountHoldName);
+
     double deposit(double amount);
+
     double withdraw(double amount);
+
+    BankAccount(const BankAccount& other);
+
+    BankAccount& operator=(const BankAccount& other);
+
+    ~BankAccount();
+
+    BankAccount& operator+=(double amount);
+
+    BankAccount& operator-=(double amount);
+
+    bool operator==(const BankAccount& other) const;
+
+    bool operator<(const BankAccount& other) const;
+
+    bool operator>(const BankAccount& other) const;
+
+    static void printAccount(const BankAccount& account);
+
+    static BankAccount createAccountFromInput();
 };
 
 

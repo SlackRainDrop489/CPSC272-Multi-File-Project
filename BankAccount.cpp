@@ -32,6 +32,67 @@ double BankAccount::withdraw(double amount) { // This will withdraw money from t
     return balance;
 }
 
+BankAccount::BankAccount(const BankAccount &other) {
+    accountNumber = other.accountNumber;
+    accountHolderName = other.accountHolderName;
+    balance = other.balance;
+}
+
+BankAccount::~BankAccount() {
+    //cout << "Bank remove" << endl;
+}
+
+BankAccount & BankAccount::operator+=(double amount) {
+    if (amount > 0) {
+        balance += amount;
+    }
+    return *this;
+}
+
+BankAccount & BankAccount::operator-=(double amount) {
+    if (balance > amount and amount > 0) {
+        balance -= amount;
+    }
+    return *this;
+}
+
+bool BankAccount::operator==(const BankAccount &other) const {
+    return accountNumber == other.accountNumber;
+}
+
+bool BankAccount::operator<(const BankAccount &other) const {
+    return balance < other.balance;
+}
+
+bool BankAccount::operator>(const BankAccount &other) const {
+    return balance > other.balance;
+}
+
+void BankAccount::printAccount(const BankAccount &account) {
+    cout << "---------------------------" << endl;
+    cout << "Account Details:" << endl;
+    cout << "Account Number: " << account.accountNumber << endl;
+    cout << "Account Holder Name: " << account.accountHolderName << endl;
+    cout << "Balance: " << account.balance << endl;
+}
+
+BankAccount BankAccount::createAccountFromInput() {
+    string newAccountNumber;
+    string newAccountHolderName;
+    double newBalance;
+    cout << "Create Account Details" << endl;
+    cout << "Enter Account Number: ";
+    cin.ignore();
+    getline(cin, newAccountNumber);
+    cout << "Enter Account Holder Name: ";
+    //cin.ignore();
+    getline(cin, newAccountHolderName);
+    cout << "Enter Balance: ";
+    //cin.ignore();
+    cin >> newBalance;
+    return {newAccountNumber, newAccountHolderName, newBalance};
+}
+
 BankAccount::BankAccount() { // This is the default constructor
     accountNumber = "";
     accountHolderName = "";
@@ -43,3 +104,4 @@ BankAccount::BankAccount(string acountNum, string HolderName, double bal) { // T
     accountHolderName = HolderName;
     balance = bal;
 }
+

@@ -12,7 +12,6 @@ Lab Activities: Objects and Classes I
 #include "BankAccount.h"
 
 
-using namespace std;
 
 void Menu(int accountNum) { // This will display the menu
     cout << "---------------------------" << endl;
@@ -24,7 +23,8 @@ void Menu(int accountNum) { // This will display the menu
     cout << "5. Change balance" << endl;
     cout << "6. Create new account" << endl;
     cout << "7. Change account" << endl;
-    cout << "8. Quit" << endl;
+    cout << "8. Print all details" << endl;
+    cout << "10. Quit" << endl;
     cout << "---------------------------" << endl;
 }
 
@@ -54,15 +54,6 @@ int main() { // Main function
                     getline(cin, newAccountName);
                     BankAccounts[currentAccountNum].setAccountHolderName(newAccountName);
                     break;
-                case 2: // Get account holder name
-                    cout << "The name of this account is: " << BankAccounts[currentAccountNum].getAccountHolderName() << endl;
-                    break;
-                case 3: // Get account number
-                    cout << "The account number is: " << BankAccounts[currentAccountNum].getAccountNumber() << endl;
-                    break;
-                case 4: // Get balance
-                    cout << "The balance is: " << BankAccounts[currentAccountNum].getBalance() << endl;
-                    break;
                 case 5: {
                     // Change balance
                     cout << "Whould you like to make a (1) Deposit or (2) a Withdraw: ";
@@ -91,13 +82,7 @@ int main() { // Main function
                 }
                 case 6: {
                     // Create new account
-                    cout << "Please enter an account name: ";
-                    cin.ignore();
-                    getline(cin, newAccountName);
-                    cout << endl << "Please enter an account balance: ";
-                    cin >> newBalance;
-                    BankAccount newAccount(to_string(BankAccounts.size() + 1), newAccountName, newBalance);
-                    BankAccounts.push_back(newAccount);
+                    BankAccounts.push_back(BankAccount::createAccountFromInput());
                     break;
                 }
                 case 7: // Change account
@@ -115,7 +100,10 @@ int main() { // Main function
                         }
                     }
                     break;
-                case 8: // Quit
+                case 8:
+                    BankAccount::printAccount(BankAccounts[currentAccountNum]);
+                    break;
+                case 10: // Quit
                     cout << "Quit";
                     break;
                 default:
@@ -123,6 +111,6 @@ int main() { // Main function
                     break;
             }
         }
-    } while (input != 8); // will run while input is not 8
+    } while (input != 10); // will run while input is not 8
     return 0;
 }
