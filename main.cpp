@@ -24,6 +24,7 @@ void Menu(int accountNum) { // This will display the menu
     cout << "6. Create new account" << endl;
     cout << "7. Change account" << endl;
     cout << "8. Print all details" << endl;
+    cout << "9. Copy existing account" << endl;
     cout << "10. Quit" << endl;
     cout << "---------------------------" << endl;
 }
@@ -103,6 +104,9 @@ int main() { // Main function
                 case 8:
                     BankAccount::printAccount(BankAccounts[currentAccountNum]);
                     break;
+                case 9: // Copy existing account
+                    BankAccount tempCopy(BankAccounts[0]);
+                    break;
                 case 10: // Quit
                     cout << "Quit";
                     break;
@@ -111,6 +115,6 @@ int main() { // Main function
                     break;
             }
         }
-    } while (input != 10); // will run while input is not 8
+    } while (input != 10); // will run while input is not 9
     return 0;
 }
