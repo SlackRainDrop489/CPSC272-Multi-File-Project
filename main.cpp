@@ -114,9 +114,15 @@ int main() { // Main function
                 case 8:
                     BankAccount::printAccount(BankAccounts[currentAccountNum]);
                     break;
-                case 9: // Copy existing account
-                    BankAccount tempCopy(BankAccounts[0]);
+                case 9: {
+                    // Copy existing account
+                    BankAccount copiedAccount(BankAccounts[0]);
+                    //push the copy onto the vector
+                    BankAccounts.push_back(copiedAccount);
+                    //print the new account that is a copy
+                    BankAccount::printAccount(copiedAccount);
                     break;
+                }
                 case 10: // Quit
                     cout << "Quit";
                     break;
