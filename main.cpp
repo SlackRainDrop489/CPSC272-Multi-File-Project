@@ -71,7 +71,11 @@ int main() { // Main function
                         case 1: {
                             // Make a deposit
                             double deposit = InputValidator::getValidInput<double>("How much would you like to deposit:");
-                            BankAccounts[currentAccountNum].deposit(deposit);
+                            if (deposit <= 0) {
+                                cout << "You can not deposit that amount" << endl;
+                            } else {
+                                BankAccounts[currentAccountNum].deposit(deposit);
+                            }
                             break;
                         }
                         case 2: {
@@ -80,6 +84,8 @@ int main() { // Main function
                             double withdraw = InputValidator::getValidInput<double>("How much would you like to withdraw:");
                             if (withdraw > BankAccounts[currentAccountNum].getBalance()) {
                                 cout << endl << "There is not enough money in your account." << endl;
+                            } else if (withdraw <= 0) {
+                                cout << "You can not withdraw that amount" << endl;
                             } else {
                                 BankAccounts[currentAccountNum].withdraw(withdraw);
                             }
