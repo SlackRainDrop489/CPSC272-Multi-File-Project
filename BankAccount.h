@@ -7,6 +7,7 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -52,7 +53,7 @@ public:
 
     static void printAccount(const BankAccount& account);
 
-    static BankAccount createAccountFromInput();
+    static BankAccount createAccountFromInput(vector<BankAccount>& bankAccounts);
 };
 
 

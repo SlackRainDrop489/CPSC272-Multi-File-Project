@@ -38,6 +38,16 @@ BankAccount::BankAccount(const BankAccount &other) {
     this->balance = other.balance;
 }
 
+BankAccount & BankAccount::operator=(const BankAccount &other) {
+    if (this == &other) {
+        return *this;
+    }
+    this->accountNumber = other.accountNumber;
+    this->accountHolderName = other.accountHolderName;
+    this->balance = other.balance;
+    return *this;
+}
+
 BankAccount::~BankAccount() {
     //cout << "Bank remove" << endl;
 }
@@ -76,7 +86,7 @@ void BankAccount::printAccount(const BankAccount &account) {
     cout << "Balance: " << account.balance << endl;
 }
 
-BankAccount BankAccount::createAccountFromInput() {
+BankAccount BankAccount::createAccountFromInput(vector<BankAccount>& bankAccounts) {
     string newAccountNumber;
     string newAccountHolderName;
     double newBalance;
@@ -84,6 +94,12 @@ BankAccount BankAccount::createAccountFromInput() {
     cout << "Enter Account Number: ";
     cin.ignore();
     getline(cin, newAccountNumber);
+    for (BankAccount& account : bankAccounts) {
+        if (account.getAccountNumber() == newAccountNumber) {
+            cout << endl << "There is another account with the same account number. Please try again" << endl;
+            return createAccountFromInput(bankAccounts);
+        }
+    }
     cout << "Enter Account Holder Name: ";
     //cin.ignore();
     getline(cin, newAccountHolderName);

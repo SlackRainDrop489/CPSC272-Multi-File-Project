@@ -38,7 +38,6 @@ int main() { // Main function
     int input; // This is the input
     int accountInputNum; // This is the input for changing accounts
     string newAccountName; // This is for holding the new name of an account
-    double newBalance; // This is for holding the new balance of an account
     do { // This is the main loop
         Menu(currentDisplayAccountNum); // This will display the menu
         cout << "Enter your choice: "; // This will prompt you for your input
@@ -66,7 +65,7 @@ int main() { // Main function
                     break;
                 case 5: {
                     // Change balance
-                    cout << "Whould you like to make a (1) Deposit or (2) a Withdraw: ";
+                    cout << "Would you like to make a (1) Deposit or (2) a Withdraw: ";
                     int optionInput;
                     cin >> optionInput;
                     switch (optionInput) {
@@ -76,7 +75,7 @@ int main() { // Main function
                             cin >> deposit;
                             BankAccounts[currentAccountNum].deposit(deposit);
                             break;
-                        case 2: // Make a withdraw
+                        case 2: // Make a withdrawal
                             cout << endl << "You currently have $" << BankAccounts[currentAccountNum].getBalance() << endl;
                             cout << "How much would you like to withdraw: ";
                             double withdraw;
@@ -93,7 +92,7 @@ int main() { // Main function
                 }
                 case 6: {
                     // Create new account
-                    BankAccounts.push_back(BankAccount::createAccountFromInput());
+                    BankAccounts.push_back(BankAccount::createAccountFromInput(BankAccounts));
                     break;
                 }
                 case 7: // Change account
