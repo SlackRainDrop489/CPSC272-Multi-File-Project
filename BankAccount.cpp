@@ -33,9 +33,9 @@ double BankAccount::withdraw(double amount) { // This will withdraw money from t
 }
 
 BankAccount::BankAccount(const BankAccount &other) {
-    accountNumber = other.accountNumber;
-    accountHolderName = other.accountHolderName;
-    balance = other.balance;
+    this->accountNumber = other.accountNumber;
+    this->accountHolderName = other.accountHolderName;
+    this->balance = other.balance;
 }
 
 BankAccount::~BankAccount() {

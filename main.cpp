@@ -55,6 +55,15 @@ int main() { // Main function
                     getline(cin, newAccountName);
                     BankAccounts[currentAccountNum].setAccountHolderName(newAccountName);
                     break;
+                case 2: // Get account holder name
+                    cout << "The name of this account is: " << BankAccounts[currentAccountNum].getAccountHolderName() << endl;
+                    break;
+                case 3: // Get account number
+                    cout << "The account number is: " << BankAccounts[currentAccountNum].getAccountNumber() << endl;
+                    break;
+                case 4: // Get balance
+                    cout << "The balance is: " << BankAccounts[currentAccountNum].getBalance() << endl;
+                    break;
                 case 5: {
                     // Change balance
                     cout << "Whould you like to make a (1) Deposit or (2) a Withdraw: ";
@@ -78,6 +87,7 @@ int main() { // Main function
                                 BankAccounts[currentAccountNum].withdraw(withdraw);
                             }
                             break;
+                        default: ;
                     }
                     break;
                 }
@@ -115,6 +125,6 @@ int main() { // Main function
                     break;
             }
         }
-    } while (input != 10); // will run while input is not 9
+    } while (input != 10); // will run while input is not 10
     return 0;
 }
