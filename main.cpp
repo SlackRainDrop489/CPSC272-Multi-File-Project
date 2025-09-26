@@ -10,6 +10,7 @@ Lab Activities: Objects and Classes I
 #include <vector>
 #include <limits>
 #include "BankAccount.h"
+#include "InputValidator.h"
 
 
 
@@ -30,7 +31,7 @@ void Menu(int accountNum) { // This will display the menu
 }
 
 int main() { // Main function
-    BankAccount BankAccount1; // This creates the first account
+    BankAccount BankAccount1("39102", "Unnamed", 0.0); // This creates the first account
     vector<BankAccount> BankAccounts; // This creates a vector of bank accounts
     BankAccounts.push_back(BankAccount1); // This adds the first account to the vector
     int currentAccountNum = 0; // This is the current account
@@ -65,33 +66,31 @@ int main() { // Main function
                     break;
                 case 5: {
                     // Change balance
-                    cout << "Would you like to make a (1) Deposit or (2) a Withdraw: ";
-                    int optionInput;
-                    cin >> optionInput;
+                    int optionInput = InputValidator::getValidInput<int>("Would you like to make a (1) Deposit or (2) a Withdraw:");
                     switch (optionInput) {
-                        case 1: // Make a deposit
-                            cout << endl << "How much would you like to deposit: ";
-                            double deposit;
-                            cin >> deposit;
+                        case 1: {
+                            // Make a deposit
+                            double deposit = InputValidator::getValidInput<double>("How much would you like to deposit:");
                             BankAccounts[currentAccountNum].deposit(deposit);
                             break;
-                        case 2: // Make a withdrawal
+                        }
+                        case 2: {
+                            // Make a withdrawal
                             cout << endl << "You currently have $" << BankAccounts[currentAccountNum].getBalance() << endl;
-                            cout << "How much would you like to withdraw: ";
-                            double withdraw;
-                            cin >> withdraw;
+                            double withdraw = InputValidator::getValidInput<double>("How much would you like to withdraw:");
                             if (withdraw > BankAccounts[currentAccountNum].getBalance()) {
                                 cout << endl << "There is not enough money in your account." << endl;
                             } else {
                                 BankAccounts[currentAccountNum].withdraw(withdraw);
                             }
                             break;
+                        }
                         default: ;
                     }
                     break;
                 }
                 case 6: {
-                    // Create new account
+                    // Create new account from input
                     BankAccounts.push_back(BankAccount::createAccountFromInput(BankAccounts));
                     break;
                 }
@@ -100,9 +99,8 @@ int main() { // Main function
                         cout << "There is only one bank account" << endl;
                     } else {
                         cout << "There are " << BankAccounts.size() << " bank accounts" << endl;
-                        cout << "Please enter account number: ";
-                        cin >> accountInputNum;
-                        if (accountInputNum < 0 or accountInputNum > BankAccounts.size()) {
+                        accountInputNum = InputValidator::getValidInput<int>("Please enter account number:");
+                        if (accountInputNum <= 0 or accountInputNum > BankAccounts.size()) {
                             cout << endl << "There is no account with this number" << endl;
                         } else {
                             currentAccountNum = accountInputNum - 1;
@@ -113,13 +111,28 @@ int main() { // Main function
                 case 8:
                     BankAccount::printAccount(BankAccounts[currentAccountNum]);
                     break;
-                case 9: {
+                case 9: { // This will let you copy an account
                     // Copy existing account
-                    BankAccount copiedAccount(BankAccounts[0]);
-                    //push the copy onto the vector
-                    BankAccounts.push_back(copiedAccount);
-                    //print the new account that is a copy
-                    BankAccount::printAccount(copiedAccount);
+                    if (BankAccounts.size() == 1) {
+                        cout << "There is only one bank account. Would you like to copy it? (1) Yes (2) No" << endl;
+                        int optionInput = InputValidator::getValidInput<int>("Option:");
+                        if (optionInput == 1) {
+                            BankAccounts.push_back(BankAccount::copyAccount(BankAccounts[0]));
+                            cout << "Account copied." << endl;
+                        }
+                    } else {
+                        cout << "Which account would you like to copy? There are currently " << BankAccounts.size() << " accounts" << endl;
+                        int accountToUse = InputValidator::getValidInput<int>("Account Number:");
+                        if (accountToUse <= 0 or accountToUse > BankAccounts.size()) {
+                            cout << "Your input is not within the valid range of accounts" << endl;
+                        } else {
+                            BankAccount copiedAccount(BankAccounts[accountToUse - 1]);
+                            //push the copy onto the vector
+                            BankAccounts.push_back(copiedAccount);
+                            //print the new account that is a copy
+                            BankAccount::printAccount(copiedAccount);
+                        }
+                    }
                     break;
                 }
                 case 10: // Quit

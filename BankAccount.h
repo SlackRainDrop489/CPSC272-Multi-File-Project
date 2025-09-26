@@ -54,6 +54,8 @@ public:
     static void printAccount(const BankAccount& account);
 
     static BankAccount createAccountFromInput(vector<BankAccount>& bankAccounts);
+
+    static BankAccount copyAccount(const BankAccount& account);
 };
 
 

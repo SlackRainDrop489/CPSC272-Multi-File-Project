@@ -3,6 +3,7 @@
 //
 
 #include "BankAccount.h"
+#include "InputValidator.h"
 #include <iostream>
 
 
@@ -32,13 +33,13 @@ double BankAccount::withdraw(double amount) { // This will withdraw money from t
     return balance;
 }
 
-BankAccount::BankAccount(const BankAccount &other) {
+BankAccount::BankAccount(const BankAccount &other) { // This is the copy constructor
     this->accountNumber = other.accountNumber;
     this->accountHolderName = other.accountHolderName;
     this->balance = other.balance;
 }
 
-BankAccount & BankAccount::operator=(const BankAccount &other) {
+BankAccount & BankAccount::operator=(const BankAccount &other) { // This is the assignment operator
     if (this == &other) {
         return *this;
     }
@@ -48,37 +49,37 @@ BankAccount & BankAccount::operator=(const BankAccount &other) {
     return *this;
 }
 
-BankAccount::~BankAccount() {
+BankAccount::~BankAccount() { // This is the destructor
     //cout << "Bank remove" << endl;
 }
 
-BankAccount & BankAccount::operator+=(double amount) {
+BankAccount & BankAccount::operator+=(double amount) { // This is the addition operator
     if (amount > 0) {
         balance += amount;
     }
     return *this;
 }
 
-BankAccount & BankAccount::operator-=(double amount) {
+BankAccount & BankAccount::operator-=(double amount) { // This is the subtraction operator
     if (balance > amount and amount > 0) {
         balance -= amount;
     }
     return *this;
 }
 
-bool BankAccount::operator==(const BankAccount &other) const {
+bool BankAccount::operator==(const BankAccount &other) const { // This is the equality operator
     return accountNumber == other.accountNumber;
 }
 
-bool BankAccount::operator<(const BankAccount &other) const {
+bool BankAccount::operator<(const BankAccount &other) const { // This is the less than operator
     return balance < other.balance;
 }
 
-bool BankAccount::operator>(const BankAccount &other) const {
+bool BankAccount::operator>(const BankAccount &other) const { // This is the greater than operator
     return balance > other.balance;
 }
 
-void BankAccount::printAccount(const BankAccount &account) {
+void BankAccount::printAccount(const BankAccount &account) { // This will print out all bank details of the specified account
     cout << "---------------------------" << endl;
     cout << "Account Details:" << endl;
     cout << "Account Number: " << account.accountNumber << endl;
@@ -86,7 +87,7 @@ void BankAccount::printAccount(const BankAccount &account) {
     cout << "Balance: " << account.balance << endl;
 }
 
-BankAccount BankAccount::createAccountFromInput(vector<BankAccount>& bankAccounts) {
+BankAccount BankAccount::createAccountFromInput(vector<BankAccount>& bankAccounts) { // This will create a new account from input
     string newAccountNumber;
     string newAccountHolderName;
     double newBalance;
@@ -103,10 +104,14 @@ BankAccount BankAccount::createAccountFromInput(vector<BankAccount>& bankAccount
     cout << "Enter Account Holder Name: ";
     //cin.ignore();
     getline(cin, newAccountHolderName);
-    cout << "Enter Balance: ";
     //cin.ignore();
-    cin >> newBalance;
+    newBalance = InputValidator::getValidInput<double>("Enter Balance:");
     return {newAccountNumber, newAccountHolderName, newBalance};
+}
+
+BankAccount BankAccount::copyAccount(const BankAccount& account) { // This will copy an account
+    const BankAccount& newAccount(account);
+    return newAccount;
 }
 
 BankAccount::BankAccount() { // This is the default constructor
