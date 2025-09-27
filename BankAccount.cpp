@@ -50,7 +50,7 @@ BankAccount & BankAccount::operator=(const BankAccount &other) { // This is the 
 }
 
 BankAccount::~BankAccount() { // This is the destructor
-    //cout << "Bank remove" << endl;
+    // No manual memory management is needed, so the destructor is empty.
 }
 
 BankAccount & BankAccount::operator+=(double amount) { // This is the addition operator
