@@ -1,8 +1,8 @@
 /*
 Quinn Alvine
-9/11/25
+9/27/25
 This program is for making and editing a bank account
-Lab Activities: Objects and Classes I
+Lab Activities: Advanced Objects and Classes II
 */
 
 #include <iostream>
